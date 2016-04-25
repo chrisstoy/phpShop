@@ -1,105 +1,35 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Cars!</title>
-        <style>
-            .error {
-                color: red;
-                font-size: smaller;
-            }
-            .hidden {
-                display: none;
-            }
-        </style>
-    </head>
-    <body>
-        <?php
+<?php
+    // set up autoloader to look in the server folder for classes
+    spl_autoload_register(function ($class_name) {
+        $p = 'server/'. $class_name . '.php';
+        include $p;
+    });
 
-            $cars = array(
-                "VW",
-                "BMW",
-                "Audi",
-                "Mazda",
-                "Buick"
-            );
+    define('PATH', parse_url(getenv('REQUEST_URI'), PHP_URL_PATH));
 
-            $yournameError = "";
-            $favcarError = "";
-            $yourname = null;
-            $favcar = null;
-            $goodToGo = true;
+    function loadBody($url) {
+        $body;
+        ob_start();
+        require($url);
+        $body = ob_get_contents();
+        ob_end_clean();
+        return $body;
+    }
 
-            // Cleans input data of bad characters and strips extraneous whitespace
-            function formValue($key) {
-                if ( empty($_POST[$key])) {
-                    return null;
-                }
-                else {
-                    $data = trim($_POST[$key]);
-                    $data = stripslashes($data);
-                    $data = htmlspecialchars($data);
-                    return $data;
-                }
-            }
+    switch (PATH) {
+        case '/main' :
+        case '/category' :
+        case '/cart' :
+        case '/pdp' :
+            $body = loadBody('client'.PATH.'.php');
+            break;
 
-            if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
-                $yourname = formValue('fullname');
-                $favcar = formValue('car');
+        default:
+            // This should redirect to the main page...not load the main php
+            $body = loadBody('client/main.php');
+            break;
+    }
 
-                if ( $yourname == "" ) {
-                    $goodToGo = false;
-                    $yournameError = "You must enter your name";
-                }
-                if ( $favcar == "" ) {
-                    $goodToGo = false;
-                    $favcarError = "You must select a favorite car";
-                }
-            }
-        ?>
-
-        <h1>Car Select Test</h1>
-        <hr>
-        <h3>Select your favorite car below, then press SUBMIT</h3>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-            <label for="FullName">Your Full Name: </label><input type="input" name="fullname" id="FullName">
-            <span class="<?php $yournameError!=''? print('error'): print('hidden'); ?>">* <?php echo $yournameError;?></span>
-            <br>
-            <br>
-            <label>Select Car Model:</label>
-            <span class="<?php $favcarError!=''? print('error'): print('hidden'); ?>">* <?php echo $favcarError;?></span>
-            <br>
-            <?php
-                foreach( $cars as $carmake) {
-                    echo "<input type='radio' name='car' value='$carmake'>$carmake</br>";
-                }
-            ?>
-            <br>
-            <input type="submit" value="Submit">
-        </form>
-        <br>
-        <hr>
-
-        <?php
-            if ( $yourname !== null && $favcar !== null ) {
-
-               // go fetch an image for the selected car
-                $response = file_get_contents('http://api.pixplorer.co.uk/image?word='.$favcar);
-                $response = json_decode($response);
-                $images = $response->images;
-                $image = $images[0];
-                $img_url = $image->imageurl;
-
-                echo "<p>".$yourname.", you selected <strong>".$favcar."</strong> as your favorite car.";
-                echo "<br><img src='".$img_url."'></p>";
-            }
-        ?>
-        <p>
-            <a href="/">Try Again</a>
-        </p>
-
-
-    </body>
-</html>
-
-
-
+    // load the master page container
+    require('client/master.php');
+?>

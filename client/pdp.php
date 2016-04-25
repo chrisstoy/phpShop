@@ -1,0 +1,1 @@
+<?php $pageName = "phpShop - PDP"; ?>
