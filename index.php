@@ -8,12 +8,12 @@
     define('PATH', parse_url(getenv('REQUEST_URI'), PHP_URL_PATH));
 
     function loadBody($url) {
-        $body;
+        $bodyTxt;
         ob_start();
         require($url);
-        $body = ob_get_contents();
+        $bodyTxt = ob_get_contents();
         ob_end_clean();
-        return $body;
+        return $bodyTxt;
     }
 
     switch (PATH) {
@@ -32,4 +32,3 @@
 
     // load the master page container
     require('client/master.php');
-?>

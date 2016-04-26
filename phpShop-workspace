@@ -1,0 +1,49 @@
+<NotepadPlus>
+    <Project name="phpShop">
+        <Folder name=".idea">
+            <File name=".idea\encodings.xml" />
+            <File name=".idea\misc.xml" />
+            <File name=".idea\modules.xml" />
+            <File name=".idea\phpShop.iml" />
+            <File name=".idea\workspace.xml" />
+        </Folder>
+        <Folder name=".vagrant">
+            <Folder name="machines">
+                <Folder name="default">
+                    <Folder name="virtualbox">
+                        <File name=".vagrant\machines\default\virtualbox\action_provision" />
+                        <File name=".vagrant\machines\default\virtualbox\action_set_name" />
+                        <File name=".vagrant\machines\default\virtualbox\creator_uid" />
+                        <File name=".vagrant\machines\default\virtualbox\id" />
+                        <File name=".vagrant\machines\default\virtualbox\index_uuid" />
+                        <File name=".vagrant\machines\default\virtualbox\private_key" />
+                        <File name=".vagrant\machines\default\virtualbox\synced_folders" />
+                    </Folder>
+                </Folder>
+            </Folder>
+        </Folder>
+        <Folder name="client">
+            <Folder name="images">
+                <File name="client\images\logo.png" />
+            </Folder>
+            <File name="client\cart.php" />
+            <File name="client\category.php" />
+            <File name="client\footer.php" />
+            <File name="client\global.css" />
+            <File name="client\header.php" />
+            <File name="client\main.php" />
+            <File name="client\master.php" />
+            <File name="client\pdp.php" />
+        </Folder>
+        <Folder name="server">
+            <File name="server\Product.php" />
+        </Folder>
+        <File name=".gitignore" />
+        <File name=".htaccess" />
+        <File name="composer.json" />
+        <File name="composer.phar" />
+        <File name="index.php" />
+        <File name="README.md" />
+        <File name="Vagrantfile" />
+    </Project>
+</NotepadPlus>

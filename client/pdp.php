@@ -1,1 +1,1 @@
-<?php $pageName = "phpShop - PDP"; ?>
+<?php global $pageName; $pageName = "phpShop - PDP"; ?>

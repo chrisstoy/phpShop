@@ -2,3 +2,4 @@
 .DS_STORE
 .vagrant
 node_components/
+composer.phar
