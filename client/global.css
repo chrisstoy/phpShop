@@ -2,6 +2,11 @@
 
 .navbar-brand {
     font-family: fantasy;
-    font-size: x-large;
+    font-size: xx-large;
+}
 
+.navbar-text.tagline {
+	font-family: cursive;
+    font-size: x-large;
+	color: goldenrod;
 }

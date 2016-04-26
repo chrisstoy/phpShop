@@ -1,13 +1,8 @@
 
     <hr>
-    <h3>Links to other pages:</h3>
-    <ul>
-        <li><a href="/main">Main</li>
-        <li><a href="/category">Category</li>
-        <li><a href="/cart">Cart</li>
-        <li><a href="/pdp">Product Details</li>
-    </ul>
-
+	<div class="text-center">
+		<small><em>phpShop Demo written by Chris Stoy - 2016</em></small>
+	</div>
 
     <!-- Common Javascript files -->
         <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
