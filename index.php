@@ -19,14 +19,14 @@
 	$ctrlName = "\Controllers\\".$urlPart[0];
 	$action = isset($urlPart[1]) ? $urlPart[1] : 'index';
 
-	try {
+	if ( class_exists($ctrlName) ){
         $controller = new $ctrlName();
     }
-    catch (Exception $e) {
+    else {
         $controller = new \Controllers\error();
-        $action = 'handleException';
+        $action = 'handle_404';
         $queryParams = [
-            'exception' => $e
+            'page' => $urlPart[0]
         ];
     }
     print call_user_func_array(array($controller, $action), $queryParams);
