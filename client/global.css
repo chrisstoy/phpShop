@@ -10,3 +10,7 @@
     font-size: x-large;
 	color: goldenrod;
 }
+
+.navbar  .cart {
+	margin-right: .5em;
+}

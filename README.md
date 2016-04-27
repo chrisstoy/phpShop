@@ -19,8 +19,9 @@ Basic data structures
     Product : {
         id : 0,
         categories : [],
-        name: ""
-        description: ""
+        name: "",
+		blurb: "",
+        description: "",
     }
 
     Price : {

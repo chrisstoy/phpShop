@@ -1,34 +1,23 @@
 <?php
-    // set up autoloader to look in the server folder for classes
-    spl_autoload_register(function ($class_name) {
-        $p = 'server/'. $class_name . '.php';
-        include $p;
-    });
+    // define some constants
+    define('EXT', '.php');
+    define('DS', '/');
+    define('SYSTEM_PATH', realpath(__DIR__). DS);
 
-    define('PATH', parse_url(getenv('REQUEST_URI'), PHP_URL_PATH));
+	// Autoload taken care of by Composer.  See https://getcomposer.org/doc/01-basic-usage.md#autoloading
+	require( SYSTEM_PATH. '/vendor/autoload'.EXT);
 
-    function loadBody($url) {
-        $bodyTxt;
-        ob_start();
-        require($url);
-        $bodyTxt = ob_get_contents();
-        ob_end_clean();
-        return $bodyTxt;
-    }
+	///////////////////////////////////////////
+	// Handle Routing
 
-    switch (PATH) {
-        case '/main' :
-        case '/category' :
-        case '/cart' :
-        case '/pdp' :
-            $body = loadBody('client'.PATH.'.php');
-            break;
+	// SUPER simple routing code
+	$urlPath = parse_url(getenv('REQUEST_URI'), PHP_URL_PATH);
+	$urlPart = explode('/', trim($urlPath, "/"));
+	parse_str((parse_url(getenv('REQUEST_URI'), PHP_URL_QUERY)), $queryParams);
 
-        default:
-            // This should redirect to the main page...not load the main php
-            $body = loadBody('client/main.php');
-            break;
-    }
+	// render the requested page
+	$ctrlName = "Controllers\\".$urlPart[0];
+	$action = isset($urlPart[1]) ? $urlPart[1] : 'index';
+	$controller = new $ctrlName();
+	print call_user_func_array(array($controller, $action), $queryParams);
 
-    // load the master page container
-    require('client/master.php');
