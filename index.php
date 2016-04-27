@@ -16,8 +16,18 @@
 	parse_str((parse_url(getenv('REQUEST_URI'), PHP_URL_QUERY)), $queryParams);
 
 	// render the requested page
-	$ctrlName = "Controllers\\".$urlPart[0];
+	$ctrlName = "\Controllers\\".$urlPart[0];
 	$action = isset($urlPart[1]) ? $urlPart[1] : 'index';
-	$controller = new $ctrlName();
-	print call_user_func_array(array($controller, $action), $queryParams);
+
+	try {
+        $controller = new $ctrlName();
+    }
+    catch (Exception $e) {
+        $controller = new \Controllers\error();
+        $action = 'handleException';
+        $queryParams = [
+            'exception' => $e
+        ];
+    }
+    print call_user_func_array(array($controller, $action), $queryParams);
 
