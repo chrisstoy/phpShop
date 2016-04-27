@@ -44,7 +44,7 @@ namespace Server
 		    foreach( $this->_productData as $product ) {
 
                 $common = array_intersect($product->categories, $categories);
-                if ( array_count_values($common) > 0 ) {
+                if ( count($common) > 0 ) {
                     // there was at least one matching category
 		            array_push($products, $product);
                 }
@@ -64,7 +64,7 @@ namespace Server
                 $categories = array_merge($categories, $product->categories);
 		    }
 
-		    return $categories;
+		    return array_unique($categories);
 		}
 		
 	};

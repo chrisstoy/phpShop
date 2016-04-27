@@ -4,21 +4,31 @@
 
     <div class="container category index">
 
-        <div class="panel panel-info">
+        <div class="panel panel-default">
             <div class="panel-heading">
-            <h1>Items with category: <strong class="text-primary">{{$category}}</strong></h1>
+                <h2>Items with category:
+                    <div class="dropdown label">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                            {{$category}}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach( $categories as $cat)
+                                <li><a href="/category?category={{$cat}}">{{$cat}}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </h2>
             </div>
             <div class="panel-body">
+                <div class="list-group">
                 @foreach ( $products as $product )
-                    <div class="row">
-                        <div class="col-md-1">
-                            <img src='{{$product->image}}'>
-                        </div>
-                        <div class="col-md-8">
-                            <span>{{$product->name}}</span>
-                        </div>
-                    </div>
+                    <a href="/pdp?productId={{$product->id}}" class="list-group-item">
+                        <img src='{{$product->image}}'>
+                        <p class="list-group-item-text">{{$product->name}}</p>
+                    </a>
                 @endforeach
+                </div>
            </div>
         </div>
     </div>
