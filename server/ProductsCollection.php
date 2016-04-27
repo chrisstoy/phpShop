@@ -4,31 +4,67 @@ namespace Server
 {
 	class ProductsCollection
 	{
-		
-		/* Create a new collection using the passed DataSource */
+		/**
+		 * Create a new collection using the passed DataSource
+		 */
 		function __construct($dataSource=null) {
 			
 			$this->_dataSource = $dataSource;
 
-			// todo - for testing, fill in some dummy data
-			$imageUrl = 'http://placehold.it/150x150?text=Item+Image+Goes+Here';
-
-			$this->_productData = array(
-					new Product(ShopUtils::gen_uuid(), 'test1', 'This is the description of the item. It will happily fit here.', $imageUrl),
-					new Product(ShopUtils::gen_uuid(), 'test2', 'This is the description of the item. It will happily fit here.', $imageUrl),
-					new Product(ShopUtils::gen_uuid(), 'test3', 'This is the description of the item. It will happily fit here.', $imageUrl),
-					new Product(ShopUtils::gen_uuid(), 'test4', 'This is the description of the item. It will happily fit here.', $imageUrl),
-					new Product(ShopUtils::gen_uuid(), 'test5', 'This is the description of the item. It will happily fit here.', $imageUrl),
-					new Product(ShopUtils::gen_uuid(), 'test6', 'This is the description of the item. It will happily fit here.', $imageUrl),
-					new Product(ShopUtils::gen_uuid(), 'test7', 'This is the description of the item. It will happily fit here.', $imageUrl),
-					new Product(ShopUtils::gen_uuid(), 'test8', 'This is the description of the item. It will happily fit here.', $imageUrl),
-					new Product(ShopUtils::gen_uuid(), 'test9', 'This is the description of the item. It will happily fit here.', $imageUrl)
-				);
+			$rawData = file_get_contents(SYSTEM_PATH.'server'.DS.'sample-products.json');
+			$parsedData = json_decode($rawData);
+			$this->_productData = $parsedData;
 		}
 		
-		/* Return a list of all available products */
+		/**
+		 * Return a list of all available products
+		 */
 		public function getAllProducts() {
 			return $this->_productData;
+		}
+
+        /**
+         * Returns the requested product, or null if it does not exist
+         */
+		public function getProduct($productId) {
+		    foreach( $this->_productData as $product ) {
+		        if ( ShopUtils::uuid_equal($product->id, $productId )) {
+		            return $product;
+                }
+		    }
+		    return null;
+		}
+
+		/**
+		 * Return all products that have the requested category
+		 */
+		public function getProductsWithCategory($categories) {
+            $products = [];
+
+		    foreach( $this->_productData as $product ) {
+
+                $common = array_intersect($product->categories, $categories);
+                if ( array_count_values($common) > 0 ) {
+                    // there was at least one matching category
+		            array_push($products, $product);
+                }
+		    }
+
+		    return $products;
+		}
+
+		/**
+		 * Returns array of all categories referenced by Products
+		 */
+		public function getAllCategories() {
+
+		    $categories = [];
+
+		    foreach( $this->_productData as $product ) {
+                $categories = array_merge($categories, $product->categories);
+		    }
+
+		    return $categories;
 		}
 		
 	};

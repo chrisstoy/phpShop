@@ -2,11 +2,14 @@
 
 namespace Server
 {
-	/* Various utility functions */
+	/**
+	 * Various utility functions
+	 */
 	class ShopUtils {
 		
-		/////////////////////////////
-		// generate a UUID
+		/**
+		 * Generate a UUID
+		 */
 		public static function gen_uuid() {
 			return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
 				// 32 bits for "time_low"
@@ -27,6 +30,13 @@ namespace Server
 				// 48 bits for "node"
 				mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff )
 			);
+		}
+
+        /**
+         * Returns true if the passed uuids are equel, else false
+         */
+		public static function uuid_equal($u1, $u2) {
+		    return (strcasecmp($u1, $u2) == 0);
 		}
 	}
 	

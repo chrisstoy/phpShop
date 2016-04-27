@@ -2,21 +2,22 @@
 
 @section('body')
 
-<div class="container-fluid">
-	<!-- display today's random products -->
-	<h2>Today's Random Products</h2>
+<div class="container-fluid main index">
+	<div class="page-header">
+    	<h1>Today's Random Products</h1>
+	</div>
 	<div class="panel">
 		<div class="well well-lg">
 			<div class="row">
 			@foreach( $products as $product )
 				<div class="col-sm-6 col-md-4">
-					<div class="thumbnail">
-						<a href='/pdp?productId={{$product->id}}'>
-							<img src='{{$product->image}}'>
-							<h3 class="text-center">{{$product->name}}</h3>
-							<p class="text-center">{{$product->blurb}}</p>
-						</a>
-					</div>
+				    <div class="thumbnail">
+                        <a href='/pdp?productId={{$product->id}}' title="Click for more details">
+                            <img src='{{$product->image}}'>
+                            <h4 class="text-center">{{$product->name}}</h4>
+                        </a>
+                        <p class="text-center">{{$product->blurb}}</p>
+                    </div>
 				</div>
 			@endforeach
 			</div>

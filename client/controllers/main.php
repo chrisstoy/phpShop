@@ -16,12 +16,12 @@ namespace Controllers
             $products = $ProductsCollection->getAllProducts();
             shuffle($products);
 
-            $model = [
+            $viewModel = [
                 'title' => "Main-Index",
                 'products' => $products
             ];
 
-            return $this->result('main-index', $model);
+            return $this->result('main-index', $viewModel);
         }
     }
 

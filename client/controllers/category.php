@@ -12,12 +12,20 @@ namespace Controllers
          */
         public function index($category=null) {
 
-            $model = [
+            $productsCollection = new \Server\ProductsCollection();
+
+            $categories = $productsCollection->getAllCategories();
+            $selectCat = (isset($category) ? $category : $categories[0]);
+            $products = $productsCollection->getProductsWithCategory([$selectCat]);
+
+            $viewModel = [
                 'title' => "Category",
-                'category' => $category
+                'category' => $selectCat,
+                'categories' => $categories,
+                'products' => $products
             ];
 
-            return $this->result('category-index', $model);
+            return $this->result('category-index', $viewModel);
         }
     }
 

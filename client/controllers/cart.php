@@ -12,12 +12,12 @@ namespace Controllers
          */
         public function index($cartId=null) {
 
-            $model = [
+            $viewModel = [
                 'title' => "Cart",
                 'cartId' => isset($cartId) ? $cartId : 'NO CART'
             ];
 
-            return $this->result('cart-index', $model);
+            return $this->result('cart-index', $viewModel);
         }
     }
 
