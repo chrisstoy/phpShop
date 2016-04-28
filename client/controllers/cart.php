@@ -10,15 +10,63 @@ namespace Controllers
         /**
          * Create the model for the Main index page
          */
-        public function index($cartId=null) {
+        public function index($params) {
+
+            $cartManager = new \Server\CartManager();
+            $cart = $cartManager->getActiveCart();
+
+            $productsCollection = new \Server\ProductsCollection();
+
+            // get product details and create display line items
+            $lineItems = [];
+            foreach( $cart->_items as $item) {
+                // todo -this should make sure the item still exists
+                $product = $productsCollection->getProduct($item->productId);
+                $lineItem = (object)[
+                    'cartItem' => $item,
+                    'product' => $product
+                ];
+                array_push($lineItems, $lineItem);
+            }
 
             $viewModel = [
                 'title' => "Cart",
-                'cartId' => isset($cartId) ? $cartId : 'NO CART'
+                'cart' => $cart,
+                'lineItems' => $lineItems
             ];
 
             return $this->result('cart-index', $viewModel);
         }
+		
+		/**
+		 * Add a new item to the cart
+		 */
+		public function add($params) {
+
+            $productId = isset($params->productId) ? $params->productId : null;
+
+            $productsCollection = new \Server\ProductsCollection();
+            $product = $productsCollection->getProduct($productId);
+
+            if( isset($product) ) {
+                // add the product to our cart
+                $cartManager = new \Server\CartManager();
+                $cart = $cartManager->getActiveCart();
+                $cart->addProduct($product);
+                $cartManager->saveCart($cart);
+            }
+            else {
+                // Failed to find the product to add it to the cart
+                return $this->result('pdp-not-found', [ 'title' => 'Product Not Found', 'productId' => $productId ]);
+            }
+
+			$viewModel = [
+			    'title' => 'Add to Cart',
+				'product' => $product
+			];
+
+			return $this->result('cart-add', $viewModel);
+		}
     }
 
 }

@@ -10,7 +10,9 @@ namespace Controllers
         /**
          * Create the model for the Category index page
          */
-        public function index($category=null) {
+        public function index($params) {
+
+            $category = isset($params->category) ? $params->category : null;
 
             $productsCollection = new \Server\ProductsCollection();
 

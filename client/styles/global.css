@@ -1,7 +1,8 @@
 
-
+/*****************************/
+/* Header styles */
 .navbar-brand {
-    font-family: fantasy;
+    font-family: Impact, Charcoal, sans-serif;
     font-size: xx-large;
 }
 
@@ -15,24 +16,38 @@
 	margin-right: .5em;
 }
 
-/* main page styles */
+/*****************************/
+/* Footer */
+.footer {
+}
+
+/*****************************/
+/* Main page styles */
 .main.index .thumbnail {
     min-height: 25em;
     max-height: 25em;
     overflow: hidden;
 }
+.main.index .thumbnail p {
+    width: 100%;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .main.index .thumbnail img {
     height: 160px;
 }
 
+/*****************************/
 /* PDP styles */
-
-
-.pdp.index img {
-    width: 90%;
+.pdp.index .product-image img {
+	max-height: 480px;
+    max-width: 90%;
 }
 
+/*****************************/
 /* Category styles */
-.category.index img {
+.list-group-item .product-image {
     height: 3em;
 }

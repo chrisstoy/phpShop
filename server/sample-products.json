@@ -5,7 +5,8 @@
     "blurb": "12-cup programmable coffeemaker with insulated inner tank and no carafe",
     "description": "48464 Features: -Coffeemaker. -Insulated inner tank with gentle heater to keep coffee fresh. -Brew bold, regular, small batch or iced coffee. -Adjustable auto shutoff provides customize settings from zero to four hours. -Programmable clock/timer. -Stainless steel control panel. Product Type: -Automatic machines. Color: -Black. Dimensions: -16'' H x 12.5'' W x 9.25'' D. Overall Height - Top to Bottom: -16'. Overall Width - Side to Side: -12.5'. Overall Depth - Front to Back: -9.25'. Overall Product Weight: -7.4 lbs.",
     "image": "http://ecx.images-amazon.com/images/I/71Ln8SPOOIL._SX425_.jpg",
-    "categories": ["appliances", "kitchen"]
+    "categories": ["appliances", "kitchen"],
+    "price" : 25.00
   },
   {
     "id": " 8df105f5-9e2f-41d3-a204-be5033ee5b91",
@@ -13,7 +14,8 @@
     "blurb": "FP Coffee Maker: Not just a great cup of coffee - quality you can count on and style you deserve.",
     "description": "The French Press Coffee Maker w/ Glass Carafe and Sturdy Metal Frame by FP Coffee Maker is exactly what you need in a coffee press, from consistently delicious, ground-free coffee to well-made, reliable parts. Not only are our products built to last, they are designed with style and elegance. The carafe has a modern look that will make a simple statement on your counter.",
     "image": "http://ecx.images-amazon.com/images/I/71lw%2BLjGWbL._SY450_.jpg",
-    "categories": ["appliances", "kitchen"]
+    "categories": ["appliances", "kitchen"],
+    "price" : 32.50
   },
   {
     "id": "134234753-60a2-4128-b585-c06a28fe2f56",
@@ -21,7 +23,8 @@
     "blurb": "the Best Hand Held Manual Citrus Juicer. Made from Food Grade Stainless Steel with Lime Green Silicone Handles for Comfort. Easily Extract More Fresh Juice Now!",
     "description": "6peas Lemon Squeezer is strong, efficient, easy to use and clean and looks great too! Made from durable, food-safe, 18/10 stainless steel, it has been designed with a strong and sturdy hinge to last a lifetime. Cheerful lime green silicone handles ensure you won't get sore hands when juicing.",
     "image": "http://ecx.images-amazon.com/images/I/81ZsCoRXLHL._SX425_.jpg",
-    "categories": ["utensil", "kitchen"]
+    "categories": ["utensil", "kitchen"],
+    "price" : 7.49
   },
   {
     "id": "70125413-60a2-4128-b585-c06a28fe2f56",
@@ -29,7 +32,8 @@
     "blurb": "There's a spot to keep all your groceries organized and accessible in this Whirlpool refrigerator. Temperature- and climate-controlled drawers keep foods fresh and ready to enjoy at any time.",
     "description": "Smart sensors maintain optimal temperature for food storage Accu-Chill temperature management system quickly gauges and adjusts the internal temperature to keep your food properly chilled.      Minimize freezer burn with Adaptive Defrost      Sensor-controlled defrost cycle runs only when needed to better preserve food.      Humidity-controlled crispers help extend the freshness of produce      Includes 2 half-width crisper drawers that extend the life of fresh fruits and vegetables, reducing waste.      Store larger items in the full-width pantry drawer      Use this temperature-controlled drawer to store a sheet cake or party platter without taking up room on a shelf.",
     "image": "http://pisces.bbystatic.com/image2/BestBuy_US/images/products/1609/1609849_sd.jpg",
-    "categories": ["appliances", "kitchen", "home"]
+    "categories": ["appliances", "kitchen", "home"],
+    "price" : 879.99
   },
   {
     "id": "7083a753-60a2-4238-b585-c0525fe2f56",
@@ -37,7 +41,8 @@
     "blurb": "Apple iMac MK452LL/A All-in-One: iMac now offers a stunning Retina® 4K display on the 21.5`` model. And a wider color gamut means a palette of up to 25 percent more available colors. So photos and videos look crystal clear and vibrant, and text is razor sharp.",
     "description": "All-in-one design saves space and cuts clutter.  A full computer is housed inside the monitor, so you get all the power of a desktop in a streamlined design that involves fewer cables and takes up less space on a desk, table or kitchen counter.",
     "image": "http://pisces.bbystatic.com/image2/BestBuy_US/images/products/6293/6293016_sd.jpg",
-    "categories": ["computer", "home", "apple"]
+    "categories": ["computer", "home", "apple"],
+    "price" : 2499.00
   }
 
 ]

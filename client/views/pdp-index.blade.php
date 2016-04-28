@@ -5,13 +5,26 @@
     <div class="well well-lg">
         <div class="row">
             <div class="col-sm-6 col-md-6">
-                <img src='{{$product->image}}'>
+				<div class="product-image">
+					<img class="center-block" src='{{$product->image}}'>
+				</div>
             </div>
             <div class="col-sm-6 col-md-6">
-                <h3>{{$product->name}}</h3>
-                <p><em>{{$product->blurb}}</em></p>
-                <hr>
-                <p>{{$product->description}}</p>
+				<div class="row">
+					<h3>{{$product->name}}</h3>
+					<p><em>{{$product->blurb}}</em></p>
+					<hr>
+					<p>{{$product->description}}</p>
+					<hr>
+					<h3 class="text text-default"><strong>List Price: <span class="text text-danger">{{$listPrice}}</span></strong></h3>
+					<hr>
+				</div>
+				<div class="row">
+					<form action="/cart/add" method="post">
+						<input type="hidden" name="productId" value="{{$product->id}}">
+						<button type="submit" class="btn btn-primary">Add to Cart</button>
+					</form>
+				</div>
             </div>
         </div>
     </div>

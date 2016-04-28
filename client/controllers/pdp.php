@@ -10,7 +10,9 @@ namespace Controllers
         /**
          * Create the model for the Main index page
          */
-        public function index($productId=null) {
+        public function index($params) {
+
+            $productId = isset($params->productId) ? $params->productId : null;
 
             $productsCollection = new \Server\ProductsCollection();
             $product = $productsCollection->getProduct($productId);
@@ -19,7 +21,8 @@ namespace Controllers
 
                 $viewModel = [
                     'title' => $product->name,
-                    'product' => $product
+                    'product' => $product,
+                    'listPrice' => money_format('$%i', $product->price)
                 ];
 
                 return $this->result('pdp-index', $viewModel);

@@ -24,7 +24,7 @@
                 <div class="list-group">
                 @foreach ( $products as $product )
                     <a href="/pdp?productId={{$product->id}}" class="list-group-item">
-                        <img src='{{$product->image}}'>
+                        <img src='{{$product->image}}' class="product-image">
                         <p class="list-group-item-text">{{$product->name}}</p>
                     </a>
                 @endforeach

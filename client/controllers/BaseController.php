@@ -25,8 +25,15 @@ namespace Controllers
          * Common method for rendering a view with a model
          */
         protected function result($view, $viewModel) {
+
+            // todo - seems hacky.  calculate the current cart total to keep the header up to date
+            $cartManager = new \Server\CartManager();
+            $cart = $cartManager->getActiveCart();
+            $GLOBALS['currentCartCount'] = $cart->numberOfItemsInCart();
+
            return self::$blade->view()->make($view, $viewModel )->render();
         }
+
     }
 
     // perform the one-time init

@@ -10,7 +10,7 @@ namespace Controllers
         /**
          * Create the model for the Main index page
          */
-        public function index() {
+        public function index($params) {
 
             $ProductsCollection = new \Server\ProductsCollection();
             $products = $ProductsCollection->getAllProducts();

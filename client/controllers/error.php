@@ -10,14 +10,14 @@ namespace Controllers
         /**
          * Handle page errors
          */
-        public function handle_404($page) {
+        public function handle_404($params) {
 
-            $model = [
+            $viewModel = [
                 'title' => "Not Found",
-                'page' => $page
+                'page' => $params->page
             ];
 
-            return $this->result('error', $model);
+            return $this->result('error', $viewModel);
         }
     }
 
