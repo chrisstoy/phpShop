@@ -7,7 +7,7 @@
     setlocale(LC_MONETARY, 'en_US');
 
 	// Autoload taken care of by Composer.  See https://getcomposer.org/doc/01-basic-usage.md#autoloading
-	require( SYSTEM_PATH. '/vendor/autoload'.EXT);
+	require( SYSTEM_PATH. 'vendor/autoload'.EXT);
 
 	///////////////////////////////////////////
 	// Handle Routing

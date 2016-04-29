@@ -19,12 +19,15 @@
                             <div class="col-sm-1">
                                 <img src='{{$lineItem->product->image}}' class="center-block product-image">
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-7">
                                 <p class="list-group-item-text">{{$lineItem->product->name}}</p>
                             </div>
                             </a>
                             <div class="col-sm-3">
                                 <span class="text text-default pull-right"><strong>Price: <span class="text text-danger">{{money_format('$%i', $lineItem->cartItem->price)}}</span></strong></span>
+                            </div>
+                            <div class="col-sm-1">
+                                <button class="btn btn-warning"><span class="glyphicon glyphicon-remove"</button>
                             </div>
                         </div>
                     </li>
