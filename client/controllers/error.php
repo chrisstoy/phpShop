@@ -13,8 +13,8 @@ namespace Controllers
         public function handle_404($params) {
 
             $viewModel = [
-                'title' => "Not Found",
-                'page' => $params->page
+                'title' => "Error",
+                'params' => $params
             ];
 
             return $this->result('error', $viewModel);

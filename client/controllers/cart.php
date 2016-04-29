@@ -7,13 +7,7 @@ namespace Controllers
      */
     class cart extends BaseController
     {
-        /**
-         * Create the model for the Main index page
-         */
-        public function index($params) {
-
-            $cartManager = new \Server\CartManager();
-            $cart = $cartManager->getActiveCart();
+        function getLineItemsFromCart($cart) {
 
             $productsCollection = new \Server\ProductsCollection();
 
@@ -28,6 +22,19 @@ namespace Controllers
                 ];
                 array_push($lineItems, $lineItem);
             }
+            return $lineItems;
+        }
+
+        /**
+         * Create the model for the Main index page
+         */
+        public function index($params) {
+
+            $cartManager = new \Server\CartManager();
+            $cart = $cartManager->getActiveCart();
+
+            // get product details and create display line items
+            $lineItems = $this->getLineItemsFromCart($cart);
 
             $viewModel = [
                 'title' => "Cart",
@@ -105,6 +112,32 @@ namespace Controllers
             else {
                 // Failed to find the product to add it to the cart
                 return $this->result('pdp-not-found', [ 'title' => 'Product Not Found', 'productId' => $itemId ]);
+            }
+        }
+
+        /**
+         * Process checkout
+         */
+        public function checkout($params) {
+
+            $cartId = isset($params->cartId) ? $params->cartId : null;
+            $cartManager = new \Server\CartManager();
+            $cart = $cartManager->getCart($cartId);
+            if (isset($cart) ) {
+
+                // get product details and create display line items
+                $lineItems = $this->getLineItemsFromCart($cart);
+
+                $viewModel = [
+                    'title' => "Cart",
+                    'cart' => $cart,
+                    'lineItems' => $lineItems
+                ];
+
+                return $this->result('cart-checkout', $viewModel);
+            }
+            else {
+                return $this->result('error', ['body'=>'Can not checkout with an empty cart']);
             }
         }
     }

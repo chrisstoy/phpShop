@@ -49,7 +49,13 @@
                 <div class="pull-right">
                     <h5 lass="text text-default">Number of Items: <span class="text text-warning">{{$cart->numberOfItemsInCart()}}</span></h5>
                     <h3 lass="text text-default"><strong>Total: <span class="text text-danger">{{money_format('$%i', $cart->cartValue())}}</span></strong></h3>
-                    <button class="btn btn-primary">Checkout</button>
+
+                    @if ($cart->numberOfItemsInCart())
+                        <form action="/cart/checkout" method="get" class="form-inline">
+                            <input type="hidden" name="cartId" value="{{$cart->cartId}}" class="cartId">
+                            <button type="submit" class="btn btn-primary">Checkout</button>
+                        </form>
+                    @endif
                 </div>
             </div>
 
