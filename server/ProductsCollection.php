@@ -11,6 +11,7 @@ namespace Server
 			
 			$this->_dataSource = $dataSource;
 
+            // todo - for now, use file system
 			$rawData = file_get_contents(SYSTEM_PATH.'server'.DS.'sample-products.json');
 			$parsedData = json_decode($rawData);
 			$this->_productData = $parsedData;

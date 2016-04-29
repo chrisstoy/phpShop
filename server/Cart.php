@@ -25,7 +25,28 @@ namespace Server {
                 'price' => $product->price
             ];
 
+            $this->addItem($listItem);
+        }
+
+        /**
+         * Add the item to the cart
+         */
+        public function addItem($listItem) {
             array_push($this->_items, $listItem);
+        }
+
+        /**
+         * Removes the specified item from the cart, and returns that item.
+         */
+        public function removeItem($itemId) {
+            for ( $ii = 0; $ii < count($this->_items); $ii++) {
+                $item = $this->_items[$ii];
+                if ( $item->itemId == $itemId ) {
+                    array_splice($this->_items, $ii, 1);
+                    return $item;
+                }
+            }
+            return null;
         }
 
         /**

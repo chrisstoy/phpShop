@@ -67,6 +67,46 @@ namespace Controllers
 
 			return $this->result('cart-add', $viewModel);
 		}
+
+		/**
+		 * Removes the specified item from the cart
+		 */
+        public function remove($params) {
+
+            $cartId = isset($params->cartId) ? $params->cartId : null;
+            $itemId = isset($params->itemId) ? $params->itemId : null;
+
+            if ( isset($cartId) && isset($itemId) ) {
+                // add the product to our cart
+                $cartManager = new \Server\CartManager();
+                $cart = $cartManager->getCart($cartId);
+                if (isset($cart) ) {
+
+                    $item = $cart->removeItem($itemId);
+                    $cartManager->saveCart($cart);
+
+                    $productId = $item->productId;
+                    $productsCollection = new \Server\ProductsCollection();
+                    $product = $productsCollection->getProduct($productId);
+
+                    $viewModel = [
+                        'title' => 'Remove from Cart',
+                        'product' => $product
+                    ];
+
+                    return $this->result('cart-remove', $viewModel);
+
+                }
+                else {
+                    // Failed to find the product to add it to the cart
+                    return $this->result('pdp-not-found', [ 'title' => 'Cart not found', 'productId' => $cartId ]);
+                }
+            }
+            else {
+                // Failed to find the product to add it to the cart
+                return $this->result('pdp-not-found', [ 'title' => 'Product Not Found', 'productId' => $itemId ]);
+            }
+        }
     }
 
 }

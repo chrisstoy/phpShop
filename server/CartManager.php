@@ -12,7 +12,7 @@ namespace Server
 			$this->_dataSource = $dataSource;
 
             // load the test cart
-            $this->loadCart('test');
+            $this->_activeCart = $this->getCart('test');
 		}
 
 		/**
@@ -21,13 +21,13 @@ namespace Server
 		public function getActiveCart() {
             return $this->_activeCart;
 		}
-		
 
 		/**
 		 * Saves the active cart
 		 */
 		public function saveCart($cart) {
-		    $rawData = json_encode($cart);
+            // todo - for now, use file system
+            $rawData = json_encode($cart);
             $cartFile = SYSTEM_PATH.'.cache'.DS.$cart->cartId.'_cart.json';
             file_put_contents($cartFile, $rawData);
 		}
@@ -35,21 +35,21 @@ namespace Server
 		/**
 		 * Loads the requested Cart
 		 */
-		public function loadCart($cartId) {
-		
-            // todo - for now, use file system to load cart
+		public function getCart($cartId) {
+
+            // todo - for now, use file system
             $cartFile = SYSTEM_PATH.'.cache'.DS.$cartId.'_cart.json';
             if ( file_exists($cartFile) ) {
                 $rawData = file_get_contents($cartFile);
                 $parsedData = json_decode($rawData);
-                $this->_activeCart = new Cart($parsedData->cartId, $parsedData->_items);
+                return new Cart($parsedData->cartId, $parsedData->_items);
             }
             else {
-                $this->_activeCart = new Cart($cartId);
-                $this->saveCart($this->_activeCart);
+                $cart = new Cart($cartId);
+                $this->saveCart($cart);
+                return $cart;
             }
-		
-		}
+        }
 
     }
 
