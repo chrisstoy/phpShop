@@ -27,7 +27,7 @@ namespace Controllers
         protected function result($view, $viewModel) {
 
             // todo - seems hacky.  calculate the current cart total to keep the header up to date
-            $cartManager = new \Server\CartManager();
+            $cartManager = new \Server\CartManager($GLOBALS['cartDataSource']);
             $cart = $cartManager->getActiveCart();
             $GLOBALS['currentCartCount'] = $cart->numberOfItemsInCart();
 

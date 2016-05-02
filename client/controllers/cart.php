@@ -9,7 +9,7 @@ namespace Controllers
     {
         function getLineItemsFromCart($cart) {
 
-            $productsCollection = new \Server\ProductsCollection();
+            $productsCollection = new \Server\ProductsCollection($GLOBALS['productsDataSource']);
 
             // get product details and create display line items
             $lineItems = [];
@@ -30,7 +30,7 @@ namespace Controllers
          */
         public function index($params) {
 
-            $cartManager = new \Server\CartManager();
+            $cartManager = new \Server\CartManager($GLOBALS['cartDataSource']);
             $cart = $cartManager->getActiveCart();
 
             // get product details and create display line items
@@ -52,12 +52,12 @@ namespace Controllers
 
             $productId = isset($params->productId) ? $params->productId : null;
 
-            $productsCollection = new \Server\ProductsCollection();
+            $productsCollection = new \Server\ProductsCollection($GLOBALS['productsDataSource']);
             $product = $productsCollection->getProduct($productId);
 
             if( isset($product) ) {
                 // add the product to our cart
-                $cartManager = new \Server\CartManager();
+                $cartManager = new \Server\CartManager($GLOBALS['cartDataSource']);
                 $cart = $cartManager->getActiveCart();
                 $cart->addProduct($product);
                 $cartManager->saveCart($cart);
@@ -85,7 +85,7 @@ namespace Controllers
 
             if ( isset($cartId) && isset($itemId) ) {
                 // add the product to our cart
-                $cartManager = new \Server\CartManager();
+                $cartManager = new \Server\CartManager($GLOBALS['cartDataSource']);
                 $cart = $cartManager->getCart($cartId);
                 if (isset($cart) ) {
 
@@ -93,7 +93,7 @@ namespace Controllers
                     $cartManager->saveCart($cart);
 
                     $productId = $item->productId;
-                    $productsCollection = new \Server\ProductsCollection();
+                    $productsCollection = new \Server\ProductsCollection($GLOBALS['productsDataSource']);
                     $product = $productsCollection->getProduct($productId);
 
                     $viewModel = [
@@ -121,7 +121,7 @@ namespace Controllers
         public function checkout($params) {
 
             $cartId = isset($params->cartId) ? $params->cartId : null;
-            $cartManager = new \Server\CartManager();
+            $cartManager = new \Server\CartManager($GLOBALS['cartDataSource']);
             $cart = $cartManager->getCart($cartId);
             if (isset($cart) ) {
 

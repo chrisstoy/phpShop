@@ -12,7 +12,7 @@ namespace Controllers
          */
         public function index($params) {
 
-            $ProductsCollection = new \Server\ProductsCollection();
+            $ProductsCollection = new \Server\ProductsCollection($GLOBALS['productsDataSource']);
             $products = $ProductsCollection->getAllProducts();
             shuffle($products);
 

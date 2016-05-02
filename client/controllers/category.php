@@ -14,7 +14,7 @@ namespace Controllers
 
             $category = isset($params->category) ? $params->category : null;
 
-            $productsCollection = new \Server\ProductsCollection();
+            $productsCollection = new \Server\ProductsCollection($GLOBALS['productsDataSource']);
 
             $categories = $productsCollection->getAllCategories();
             $selectCat = (isset($category) ? $category : $categories[0]);

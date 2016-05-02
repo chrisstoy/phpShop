@@ -27,5 +27,16 @@ else
 	echo xdebug.remote_port=9000 >> $PHP_INI	
 fi
 
+# Do we need to install the MongoDB extension?
+if grep -q -i mongodb.so $PHP_INI
+then
+	echo MongoDB extension already configured in $PHP_INI
+else
+    echo Installing MongoDB PHP driver
+    sudo pecl install mongodb
+    echo >> $PHP_INI
+    echo extension=mongodb.so >> $PHP_INI
+fi
+
 date > /etc/vagrant_provisioned_at
 echo DONE

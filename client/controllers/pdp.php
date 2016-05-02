@@ -14,7 +14,7 @@ namespace Controllers
 
             $productId = isset($params->productId) ? $params->productId : null;
 
-            $productsCollection = new \Server\ProductsCollection();
+            $productsCollection = new \Server\ProductsCollection($GLOBALS['productsDataSource']);
             $product = $productsCollection->getProduct($productId);
 
             if ( isset($product) ) {
