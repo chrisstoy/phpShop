@@ -5,13 +5,18 @@ phpShop
 
 phpShop is a simple PHP based web store that allows users to browse the items and manage a simple cart.
 
+The goal is to implement a "fully functioning" shop in PHP.  
+
+Currently, there is no support for unique users, and the set of items for sale in the shop is small and hard-coded in `sample-products.json`.
+
+
 ## Components
 ### Server
 PHP backend, serves the Client files, provides REST endpoints, and interacts with the Database.
 ### Client
-AngularJS based front-end to the Store.
-### Database
-MySQL based database to hold all of the persistent data.
+Views rendered using the [Laravel Blade](https://laravel.com/docs/5.1/blade) templating engine. 
+### Database _(TODO)_
+Currently, this is implemented using JSON with a simple file storing system.
 
 ## Data
 Basic data structures
