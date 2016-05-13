@@ -9,12 +9,17 @@
 	// Autoload taken care of by Composer.  See https://getcomposer.org/doc/01-basic-usage.md#autoloading
 	require( SYSTEM_PATH. 'vendor/autoload'.EXT);
 
-    // Handle app setup
-    $GLOBALS['cartDataSource'] = new \Server\CartDataFileSystem(SYSTEM_PATH.'.cache');
-
+    // Setup Cart Data Source
     $mongoDB_Heroku = 'mongodb://heroku_n19cp930:pv8ta3cttcq31fodij23iuoh6q@ds021691.mlab.com:21691/heroku_n19cp930';
     $mongoDB_local = 'mongodb://localhost:27017/scotchbox';
 
+    $mySQL_Heroku = [ 'dsn' => 'mysql:host=localhost;dbname=phpshop', 'user' =>'root', 'password' => 'root' ];
+    $mySQL_local = [ 'dsn' => 'mysql:host=localhost;dbname=phpshop', 'user' =>'root', 'password' => 'root' ];
+
+//    $GLOBALS['cartDataSource'] = new \Server\CartDataFileSystem(SYSTEM_PATH.'.cache');
+    $GLOBALS['cartDataSource'] = new \Server\CartDataPDO($mySQL_local);
+
+    // Setup Product Data Source
     $GLOBALS['productsDataSource'] = new \Server\ProductsDataFileSystem(SYSTEM_PATH.'server');
 
 	///////////////////////////////////////////

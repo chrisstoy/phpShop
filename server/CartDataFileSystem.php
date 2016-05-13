@@ -30,7 +30,6 @@ namespace Server
          */
         public function getCart($cartId) {
 
-            // todo - for now, use file system
             $cartFile = $this->rootPath.DS.$cartId.'_cart.json';
             if ( file_exists($cartFile) ) {
                 $rawData = file_get_contents($cartFile);

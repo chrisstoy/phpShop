@@ -14,8 +14,8 @@ namespace Server
 
 			$this->_dataSource = $dataSource;
 
-            // load the test cart
-            $this->_activeCart = $this->getCart('test');
+            // load the last cart
+            $this->_activeCart = $this->_dataSource->getLastCart();
 		}
 
 		/**

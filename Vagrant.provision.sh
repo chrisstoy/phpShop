@@ -38,5 +38,9 @@ else
     echo extension=mongodb.so >> $PHP_INI
 fi
 
+# Create initial database
+mysql -e "create database phpshop;"
+mysql -e "CREATE TABLE phpshop.Carts (id INT NOT NULL AUTO_INCREMENT, items VARCHAR(255) NOT NULL, PRIMARY KEY (id), UNIQUE INDEX id_UNIQUE (id ASC));"
+
 date > /etc/vagrant_provisioned_at
 echo DONE
