@@ -23,17 +23,17 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <a href="/pdp?productId={{$lineItem->product->id}}">
-                                <div class="col-sm-1">
-                                    <img src='{{$lineItem->product->image}}' class="center-block product-image">
+                                <div class="col-xs-2 col-sm-1">
+                                    <img src='{{$lineItem->product->image}}' class="product-image">
                                 </div>
-                                <div class="col-sm-7">
+                                <div class="col-xs-7 col-sm-8">
                                     <p class="list-group-item-text">{{$lineItem->product->name}}</p>
                                 </div>
                                 </a>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <span class="text text-default pull-right"><strong>Price: <span class="text text-danger">{{money_format('$%i', $lineItem->cartItem->price)}}</span></strong></span>
                                 </div>
-                                <div class="col-sm-1">
+                                <div class="col-sm-1 delete-item">
                                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#removeItemDlg"
                                         data-product-name="{{$lineItem->product->name}}"
                                         data-cart-id="{{$cart->cartId}}"

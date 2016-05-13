@@ -50,6 +50,13 @@ namespace Server {
         }
 
         /**
+         * Clears all items from the cart
+         */
+        public function clear() {
+            $this->_items = array();
+        }
+
+        /**
          * Returns the number of items in the cart
          */
         public function numberOfItemsInCart() {

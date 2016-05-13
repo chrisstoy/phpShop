@@ -8,6 +8,8 @@
 				<div class="product-image">
 					<img class="center-block" src='{{$product->image}}'>
 				</div>
+                <hr>
+                <h3 class="text text-default text-center"><strong>List Price: <span class="text text-danger">{{$listPrice}}</span></strong></h3>
             </div>
             <div class="col-sm-6 col-md-6">
 				<div class="row">
@@ -15,8 +17,6 @@
 					<p><em>{{$product->blurb}}</em></p>
 					<hr>
 					<p>{{$product->description}}</p>
-					<hr>
-					<h3 class="text text-default"><strong>List Price: <span class="text text-danger">{{$listPrice}}</span></strong></h3>
 					<hr>
 				</div>
 				<div class="row">

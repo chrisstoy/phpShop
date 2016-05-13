@@ -42,12 +42,21 @@
 /*****************************/
 /* PDP styles */
 .pdp.index .product-image img {
+    width: auto;
+    height: 200px;
+    /*
 	max-height: 480px;
-    max-width: 90%;
+	*/
+    max-width: 100%;
+
 }
 
 /*****************************/
 /* Category styles */
 .list-group-item .product-image {
     height: 3em;
+}
+
+.list-group-item .delete-item {
+    padding-left: 0;
 }

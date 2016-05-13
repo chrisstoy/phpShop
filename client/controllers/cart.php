@@ -129,12 +129,15 @@ namespace Controllers
                 $lineItems = $this->getLineItemsFromCart($cart);
 
                 $viewModel = [
-                    'title' => "Cart",
+                    'title' => "Checkout Complete",
                     'cart' => $cart,
                     'lineItems' => $lineItems
                 ];
 
-                return $this->result('cart-checkout', $viewModel);
+                $cart->clear();
+                $cartManager->saveCart($cart);
+
+                return $this->result('cart-order-placed', $viewModel);
             }
             else {
                 return $this->result('error', ['body'=>'Can not checkout with an empty cart']);
